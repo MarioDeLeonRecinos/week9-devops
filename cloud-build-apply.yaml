@@ -31,7 +31,7 @@ steps:
   - |
     echo ""
     echo "*************** TERRAFORM INIT ******************"
-    echo "******* At environment: ${env} ********"
+    echo "******* At environment: $BRANCH_NAME ********"
     echo "*************************************************"
     terraform init || exit 1
 # [START tf-plan]
@@ -43,7 +43,7 @@ steps:
   - | 
     echo ""
     echo "*************** TERRAFOM PLAN ******************"
-    echo "******* At environment: ${env} ********"
+    echo "******* At environment: $BRANCH_NAME ********"
     echo "*************************************************"
     terraform plan || exit 1
 # [END tf-plan]
@@ -54,6 +54,7 @@ steps:
   entrypoint: 'sh'
   args: 
   - '-c'
+  - '--service-account=${_SERVICE_ACCOUNT_EMAIL}'
   - | 
     terraform apply -auto-approve
 # [END tf-apply] 
