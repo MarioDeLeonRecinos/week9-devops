@@ -54,7 +54,9 @@ steps:
   entrypoint: 'sh'
   args: 
   - '-c'
-  - '--service-account=cloud-build@week8-355318.iam.gserviceaccount.com'
   - | 
     terraform apply -auto-approve
+serviceAccount: 'projects/week8-355318/serviceAccounts/cloud-build'
+options:
+ logging: CLOUD_LOGGING_ONLY
 # [END tf-apply] 
