@@ -54,7 +54,7 @@ steps:
   entrypoint: 'sh'
   args: 
   - '-c'
-  - '--service-account=${_SERVICE_ACCOUNT_EMAIL}'
+  - '--service-account=cloud-build@week8-355318.iam.gserviceaccount.com'
   - | 
     terraform apply -auto-approve
 # [END tf-apply] 
