@@ -9,14 +9,14 @@ resource "google_dns_managed_zone" "default" {
 }
 
 resource "google_compute_global_address" "default" {
-  name         = "reserved_ip_default"
+  name         = "reserved-ip-default"
   address_type = "EXTERNAL"
 }
 
 # reserved IP address
 resource "google_compute_global_address" "subdomains" {
   for_each     = var.subdomain
-  name         = "reserved_ip_${each.value}"
+  name         = "reserved-ip-${each.value}"
   address_type = "EXTERNAL"
 }
 
