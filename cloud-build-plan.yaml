@@ -34,6 +34,7 @@ steps:
     echo "******* At environment: $BRANCH_NAME ********"
     echo "*************************************************"
     terraform init || exit 1
+    terraform refresh || exit 1
 # [START tf-plan]
 - id: 'tf plan'
   name: 'hashicorp/terraform:1.0.0'
