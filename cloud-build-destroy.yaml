@@ -46,7 +46,7 @@ steps:
     echo "*************** TERRAFOM DESTROY ******************"
     echo "******* At environment: $BRANCH_NAME ********"
     echo "*************************************************"
-    terraform destroy 
+    terraform destroy -auto-approve
 # [END tf-plan]
 serviceAccount: 'projects/week8-355318/serviceAccounts/cloud-build'
 options:
