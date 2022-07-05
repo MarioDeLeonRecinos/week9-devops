@@ -28,12 +28,13 @@ steps:
   entrypoint: 'sh'
   args: 
   - '-c'
-  - |
+  - | 
     echo ""
     echo "*************** TERRAFORM INIT ******************"
     echo "******* At environment: $BRANCH_NAME ********"
     echo "*************************************************"
     terraform init 
+    terraform refresh 
 # [START tf-plan]
 - id: 'tf plan'
   name: 'hashicorp/terraform:1.2.3'
@@ -42,21 +43,11 @@ steps:
   - '-c'
   - | 
     echo ""
-    echo "*************** TERRAFOM PLAN ******************"
+    echo "*************** TERRAFOM DESTROY ******************"
     echo "******* At environment: $BRANCH_NAME ********"
     echo "*************************************************"
-    terraform plan 
+    terraform destroy 
 # [END tf-plan]
-
-# [START tf-apply]
-- id: 'tf apply'
-  name: 'hashicorp/terraform:1.2.3'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    terraform apply -auto-approve 
-# [END tf-apply] 
 serviceAccount: 'projects/week8-355318/serviceAccounts/cloud-build'
 options:
  logging: CLOUD_LOGGING_ONLY

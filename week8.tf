@@ -1,11 +1,3 @@
-resource "google_project_service" "dns_api" {
-  service  = "dns.googleapis.com"
-}
-
-resource "google_project_service" "kubernetes_api" {
-  service  = "container.googleapis.com"
-}
-
 resource "google_compute_network" "vpc_network" {
   name                    = "vpc-network"
   auto_create_subnetworks = true
@@ -13,7 +5,6 @@ resource "google_compute_network" "vpc_network" {
 }
 
 resource "google_dns_managed_zone" "default" {
-  depends_on = [google_project_service.dns_api]
   name        = "week8"
   dns_name    = "week8challenge.tk."
   description = "Week 8 DNS"
@@ -28,10 +19,9 @@ resource "google_compute_global_address" "default" {
 }
 
 resource "google_dns_record_set" "www-default" {
-  depends_on = [google_project_service.dns_api]
-  name = "www.${google_dns_managed_zone.default.dns_name}"
-  type = "CNAME"
-  ttl  = 300
+  name       = "www.${google_dns_managed_zone.default.dns_name}"
+  type       = "CNAME"
+  ttl        = 300
 
   managed_zone = google_dns_managed_zone.default.name
 
@@ -39,10 +29,9 @@ resource "google_dns_record_set" "www-default" {
 }
 
 resource "google_dns_record_set" "default" {
-  depends_on = [google_project_service.dns_api]
-  name = google_dns_managed_zone.default.dns_name
-  type = "A"
-  ttl  = 300
+  name       = google_dns_managed_zone.default.dns_name
+  type       = "A"
+  ttl        = 300
 
   managed_zone = google_dns_managed_zone.default.name
 
@@ -55,12 +44,11 @@ resource "google_service_account" "default" {
 }
 
 resource "google_container_cluster" "primary" {
-  depends_on = [google_project_service.kubernetes_api]
-  name = "my-gke-cluster"
+  name       = "my-gke-cluster"
 
   remove_default_node_pool = true
   initial_node_count       = 1
-network = google_compute_network.vpc_network.name
+  network                  = google_compute_network.vpc_network.name
   release_channel {
     channel = "REGULAR"
   }
@@ -75,7 +63,6 @@ output "stable_channel_version" {
 }
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {
-  depends_on = [google_project_service.kubernetes_api, google_service_account.default]
   name       = "my-node-pool"
   cluster    = google_container_cluster.primary.name
   node_count = 2
