@@ -33,8 +33,8 @@ steps:
     echo "*************** TERRAFORM INIT ******************"
     echo "******* At environment: $BRANCH_NAME ********"
     echo "*************************************************"
-    terraform init || exit 1
-    terraform refresh || exit 1
+    terraform init 
+    terraform refresh 
 # [START tf-plan]
 - id: 'tf plan'
   name: 'hashicorp/terraform:1.2.3'
@@ -46,7 +46,7 @@ steps:
     echo "*************** TERRAFOM PLAN ******************"
     echo "******* At environment: $BRANCH_NAME ********"
     echo "*************************************************"
-    terraform plan || exit 1
+    terraform plan 
 # [END tf-plan]
 serviceAccount: 'projects/week8-355318/serviceAccounts/cloud-build'
 options:
