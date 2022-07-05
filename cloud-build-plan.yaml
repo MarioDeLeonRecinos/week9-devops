@@ -43,7 +43,10 @@ steps:
   - | 
     echo ""
     echo "*************** TERRAFOM PLAN ******************"
-    echo "******* At environment: ${env} ********"
+    echo "******* At environment: $BRANCH_NAME ********"
     echo "*************************************************"
     terraform plan || exit 1
 # [END tf-plan]
+serviceAccount: 'projects/week8-355318/serviceAccounts/cloud-build'
+options:
+ logging: CLOUD_LOGGING_ONLY
