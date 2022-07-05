@@ -55,8 +55,8 @@ steps:
   args: 
   - '-c'
   - | 
-    terraform apply -auto-approve
+    terraform apply -auto-approve || exit 1
 # [END tf-apply] 
 serviceAccount: 'projects/week8-355318/serviceAccounts/cloud-build'
 options:
- logging: CLOUD_LOGGING_ONLY
+ logging: GCS_ONLY
