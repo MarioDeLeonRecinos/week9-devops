@@ -7,7 +7,7 @@ resource "google_compute_network" "vpc_network" {
 module "dns-provider"{
   source = "./modules/dns-provider"
 
-  name = "Week 8"
+  name = "week-8"
   dns_name = "week8challenge.tk."
   labels = {
     creator = "mario",
