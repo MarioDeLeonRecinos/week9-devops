@@ -4,38 +4,16 @@ resource "google_compute_network" "vpc_network" {
   mtu                     = 1460
 }
 
-resource "google_dns_managed_zone" "default" {
-  name        = "week8"
-  dns_name    = "week8challenge.tk."
-  description = "Week 8 DNS"
+module "dns-provider"{
+  source = "./modules/dns-provider"
 
-  visibility = "public"
-}
-
-# reserved IP address
-resource "google_compute_global_address" "default" {
-  name         = "default-ip-reserved"
-  address_type = "EXTERNAL"
-}
-
-resource "google_dns_record_set" "www-default" {
-  name       = "www.${google_dns_managed_zone.default.dns_name}"
-  type       = "CNAME"
-  ttl        = 300
-
-  managed_zone = google_dns_managed_zone.default.name
-
-  rrdatas = [google_dns_managed_zone.default.dns_name]
-}
-
-resource "google_dns_record_set" "default" {
-  name       = google_dns_managed_zone.default.dns_name
-  type       = "A"
-  ttl        = 300
-
-  managed_zone = google_dns_managed_zone.default.name
-
-  rrdatas = [google_compute_global_address.default.address]
+  name = "Week 8"
+  dns_name = "week8challenge.tk."
+  labels = {
+    creator = "mario",
+    owner = "mario"
+  }
+  subdomain = ["dash", "monitor"]
 }
 
 resource "google_service_account" "default" {

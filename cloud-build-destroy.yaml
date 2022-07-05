@@ -35,8 +35,8 @@ steps:
     echo "*************************************************"
     terraform init 
     terraform refresh 
-# [START tf-plan]
-- id: 'tf plan'
+# [START tf-destroy]
+- id: 'tf destroy'
   name: 'hashicorp/terraform:1.2.3'
   entrypoint: 'sh'
   args: 
@@ -46,8 +46,8 @@ steps:
     echo "*************** TERRAFOM DESTROY ******************"
     echo "******* At environment: $BRANCH_NAME ********"
     echo "*************************************************"
-    terraform destroy 
-# [END tf-plan]
+    terraform destroy -auto-approve
+# [END tf-destroy]
 serviceAccount: 'projects/week8-355318/serviceAccounts/cloud-build'
 options:
  logging: CLOUD_LOGGING_ONLY
