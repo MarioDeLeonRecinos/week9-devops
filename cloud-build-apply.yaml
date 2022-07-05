@@ -59,4 +59,4 @@ steps:
 # [END tf-apply] 
 serviceAccount: 'projects/week8-355318/serviceAccounts/cloud-build'
 options:
- logging: GCS_ONLY
+ logging: CLOUD_LOGGING_ONLY
