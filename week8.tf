@@ -13,7 +13,7 @@ resource "google_compute_network" "vpc_network" {
 }
 
 resource "google_dns_managed_zone" "default" {
-  depends_on = [google_project_service.dns-api]
+  depends_on = [google_project_service.dns_api]
   name        = "week8"
   dns_name    = "week8challenge.tk."
   description = "Week 8 DNS"
@@ -28,7 +28,7 @@ resource "google_compute_global_address" "default" {
 }
 
 resource "google_dns_record_set" "www-default" {
-  depends_on = [google_project_service.dns-api]
+  depends_on = [google_project_service.dns_api]
   name = "www.${google_dns_managed_zone.default.dns_name}"
   type = "CNAME"
   ttl  = 300
@@ -39,7 +39,7 @@ resource "google_dns_record_set" "www-default" {
 }
 
 resource "google_dns_record_set" "default" {
-  depends_on = [google_project_service.dns-api]
+  depends_on = [google_project_service.dns_api]
   name = google_dns_managed_zone.default.dns_name
   type = "A"
   ttl  = 300
