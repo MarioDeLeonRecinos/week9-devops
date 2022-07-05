@@ -5,7 +5,6 @@ resource "google_compute_network" "vpc_network" {
 }
 
 resource "google_dns_managed_zone" "default" {
-  depends_on  = [google_project_service.dns_api]
   name        = "week8"
   dns_name    = "week8challenge.tk."
   description = "Week 8 DNS"
@@ -30,7 +29,6 @@ resource "google_dns_record_set" "www-default" {
 }
 
 resource "google_dns_record_set" "default" {
-  depends_on = [google_project_service.dns_api]
   name       = google_dns_managed_zone.default.dns_name
   type       = "A"
   ttl        = 300
@@ -46,7 +44,6 @@ resource "google_service_account" "default" {
 }
 
 resource "google_container_cluster" "primary" {
-  depends_on = [google_project_service.kubernetes_api]
   name       = "my-gke-cluster"
 
   remove_default_node_pool = true
@@ -66,7 +63,6 @@ output "stable_channel_version" {
 }
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {
-  depends_on = [google_project_service.kubernetes_api, google_service_account.default]
   name       = "my-node-pool"
   cluster    = google_container_cluster.primary.name
   node_count = 2
