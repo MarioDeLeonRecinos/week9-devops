@@ -47,6 +47,3 @@ steps:
     echo "*************************************************"
     terraform plan || exit 1
 # [END tf-plan]
-serviceAccount: 'projects/week8-355318/serviceAccounts/cloud-build'
-options:
- logging: CLOUD_LOGGING_ONLY
