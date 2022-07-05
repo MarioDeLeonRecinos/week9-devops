@@ -1,8 +1,8 @@
-resource "google_project_service" "dns-api" {
+resource "google_project_service" "dns_api" {
   service  = "dns.googleapis.com"
 }
 
-#resource "google_project_service" "kubernetes-api" {
+#resource "google_project_service" "kubernetes_api" {
 #  service  = "container.googleapis.com"
 #}
 
@@ -13,6 +13,7 @@ resource "google_compute_network" "vpc_network" {
 }
 
 resource "google_dns_managed_zone" "default" {
+  depends_on = google_project_service.dns-api
   name        = "week8"
   dns_name    = "week8challenge.tk."
   description = "Week 8 DNS"
@@ -27,6 +28,7 @@ resource "google_compute_global_address" "default" {
 }
 
 resource "google_dns_record_set" "www-default" {
+  depends_on = google_project_service.dns-api
   name = "www.${google_dns_managed_zone.default.dns_name}"
   type = "CNAME"
   ttl  = 300
@@ -37,6 +39,7 @@ resource "google_dns_record_set" "www-default" {
 }
 
 resource "google_dns_record_set" "default" {
+  depends_on = google_project_service.dns-api
   name = google_dns_managed_zone.default.dns_name
   type = "A"
   ttl  = 300
