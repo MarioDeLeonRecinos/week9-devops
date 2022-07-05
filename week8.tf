@@ -55,6 +55,7 @@ resource "google_service_account" "default" {
 }
 
 resource "google_container_cluster" "primary" {
+  depends_on = [google_project_service.kubernetes_api]
   name = "my-gke-cluster"
 
   remove_default_node_pool = true
@@ -74,6 +75,7 @@ output "stable_channel_version" {
 }
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {
+  depends_on = [google_project_service.kubernetes_api, google_service_account.default]
   name       = "my-node-pool"
   cluster    = google_container_cluster.primary.name
   node_count = 2
