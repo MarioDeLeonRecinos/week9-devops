@@ -1,3 +1,8 @@
+resource "google_project_service" "services" {
+  for_each = toset(var.services)
+  service  = each.value
+}
+
 resource "google_dns_managed_zone" "default" {
   name        = "week8"
   dns_name    = "week8challenge.tk."
