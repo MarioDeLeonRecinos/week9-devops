@@ -13,13 +13,6 @@ resource "google_compute_global_address" "default" {
   address_type = "EXTERNAL"
 }
 
-# reserved IP address
-resource "google_compute_global_address" "subdomains" {
-  for_each     = var.subdomain
-  name         = "reserved-ip-${each.value}"
-  address_type = "EXTERNAL"
-}
-
 resource "google_dns_record_set" "www-default" {
   name       = "www.${google_dns_managed_zone.default.dns_name}"
   type       = "CNAME"
@@ -48,5 +41,5 @@ resource "google_dns_record_set" "subdomains" {
 
   managed_zone = google_dns_managed_zone.default.name
 
-  rrdatas = [google_compute_global_address.subdomains[each.key].address]
+  rrdatas = [google_compute_global_address.default.address]
 }
