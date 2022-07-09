@@ -1,6 +1,6 @@
 variable "name" {
-    description = "Name of the resource"
-    type = string
+  description = "Name of the resource"
+  type        = string
 }
 
 variable "dns_name" {
