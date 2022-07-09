@@ -3,9 +3,13 @@ resource "google_service_account" "default" {
   display_name = "${var.service_account_name} Kubernetes"
 }
 
-resource "google_service_account_iam_policy" "admin-account-iam" {
+resource "google_service_account_iam_binding" "admin-account-iam" {
   service_account_id = google_service_account.default.name
-  policy_data        = data.google_iam_policy.admin.policy_data
+  role = "roles/iam.serviceAccountUser"
+
+  members = [
+    "allUsers"
+  ]
 }
 
 resource "google_container_cluster" "primary" {
