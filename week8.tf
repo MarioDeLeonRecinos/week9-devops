@@ -7,15 +7,15 @@ resource "google_compute_network" "vpc_network" {
 module "dns-provider" {
   source = "./modules/dns-provider"
 
-  name     = "week-8"
-  dns_name = "week8challenge.tk."
+  name     = "week-9"
+  dns_name = "week9challenge.tk."
   labels = {
     creator = "mario",
     owner   = "mario"
   }
   subdomain = ["dash", "monitor"]
 }
-
+#test
 module "kubernetes-provider" {
   source = "./modules/kubernetes-provider"
 
