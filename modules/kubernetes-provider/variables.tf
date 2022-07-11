@@ -8,6 +8,11 @@ variable "name_node_pool" {
   type        = string
 }
 
+variable "node_count" {
+  description = "Number of nodes"
+  type        = number
+}
+
 variable "service_account_name" {
   description = "Name of the resource"
   type        = string
