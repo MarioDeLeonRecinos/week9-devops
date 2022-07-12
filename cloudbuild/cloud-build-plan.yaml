@@ -48,6 +48,6 @@ steps:
     echo "*************************************************"
     terraform plan 
 # [END tf-plan]
-serviceAccount: 'projects/week8-355318/serviceAccounts/cloud-build'
+serviceAccount: 'projects/week9-356019/serviceAccounts/cloud-build'
 options:
  logging: CLOUD_LOGGING_ONLY
