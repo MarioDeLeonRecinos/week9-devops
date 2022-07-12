@@ -13,7 +13,7 @@ module "dns-provider" {
     creator = "mario",
     owner   = "mario"
   }
-  subdomain = ["dash", "monitor"]
+  subdomain = ["dash", "monitor","argo","vault"]
 }
 
 module "kubernetes-provider" {
@@ -29,7 +29,7 @@ module "kubernetes-provider" {
     creator = "mario",
     owner   = "mario"
   }
-  tags = ["dash", "monitor","argo","vault"]
+  tags = ["dash", "monitor"]
 }
 
 module "cloud-sql" {
