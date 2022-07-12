@@ -29,7 +29,7 @@ module "kubernetes-provider" {
     creator = "mario",
     owner   = "mario"
   }
-  tags = ["dash", "monitor"]
+  tags = ["dash", "monitor","argo","vault"]
 }
 
 module "cloud-sql" {
