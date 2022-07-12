@@ -38,7 +38,7 @@ module "cloud-sql" {
   name             = "my-private-db"
   database_version = "MYSQL_8_0"
   database_tier    = "db-f1-micro"
-  vpc_network      = google_compute_network.vpc_network.name
+  vpc_network      = google_compute_network.vpc_network.id
   user             = "wp-user"
   password         = "wp-password"
 }
