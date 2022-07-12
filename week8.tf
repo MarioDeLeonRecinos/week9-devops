@@ -15,7 +15,7 @@ module "dns-provider" {
   }
   subdomain = ["dash", "monitor"]
 }
-#test
+
 module "kubernetes-provider" {
   source = "./modules/kubernetes-provider"
 
@@ -30,4 +30,15 @@ module "kubernetes-provider" {
     owner   = "mario"
   }
   tags = ["dash", "monitor"]
+}
+
+module "cloud-sql" {
+  source = "./modules/cloud-sql"
+
+  name             = "my-private-db"
+  database_version = "MYSQL_8_0"
+  database_tier    = "db-f1-micro"
+  vpc_network      = google_compute_network.vpc_network.name
+  user             = "wp-user"
+  password         = "wp-password"
 }
