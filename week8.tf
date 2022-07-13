@@ -23,7 +23,7 @@ module "kubernetes-provider" {
   name_node_pool       = "my-node-pool"
   service_account_name = "service-account-id"
   machine_type         = "e2-medium"
-  initial_node_count   = 3
+  initial_node_count   = 1
   node_count           = 3
   vpc_network          = google_compute_network.vpc_network.name
   labels = {
