@@ -13,6 +13,11 @@ variable "node_count" {
   type        = number
 }
 
+variable "initial_node_count"{
+  description = "Number of nodes at start"
+  type        = number
+}
+
 variable "service_account_name" {
   description = "Name of the resource"
   type        = string
