@@ -16,7 +16,7 @@ resource "google_container_cluster" "primary" {
   name = var.name
 
   remove_default_node_pool = true
-  initial_node_count       = 1
+  initial_node_count       = var.initial_node_count
   network                  = var.vpc_network
   release_channel {
     channel = "REGULAR"
