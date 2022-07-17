@@ -1,3 +1,3 @@
-# week8-devops
+# week9-devops
 
-![Architecture diagram](diagram/Week8.png)
+Infrastructure managed as code using terraform.
